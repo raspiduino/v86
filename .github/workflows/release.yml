@@ -24,7 +24,9 @@ jobs:
           rustup component add rustfmt
 
       - name: Build v86
-        run: make all
+        run: |
+          make
+          make all
 
       - name: Release to GitHub
         uses: marvinpinto/action-automatic-releases@latest

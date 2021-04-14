@@ -24,7 +24,7 @@ jobs:
           rustup component add rustfmt
 
       - name: Build v86
-        run: make build/libv86.js build/v86.wasm build/v86-fallback.wasm
+        run: make all
 
       - name: Release to GitHub
         uses: marvinpinto/action-automatic-releases@latest

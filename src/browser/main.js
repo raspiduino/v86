@@ -1410,11 +1410,12 @@
             }
 
             var filereader = new FileReader();
+            filereader.readAsArrayBuffer(file);
             filereader.onload = function(e)
             {
                 try
                 {
-                    emulator.v86.cpu.mem8 = e.target.result; // Load
+                    emulator.v86.cpu.mem8 = Uint8Array(e.target.result); // Load
                 }
                 catch(err)
                 {
@@ -1428,7 +1429,6 @@
                     emulator.run();
                 }
             };
-            filereader.readAsArrayBuffer(file);
 
             this.value = "";
         };

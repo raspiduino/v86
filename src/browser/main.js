@@ -1415,7 +1415,7 @@
             {
                 try
                 {
-                    emulator.v86.cpu.mem8 = Uint8Array(e.target.result); // Load
+                    emulator.v86.cpu.mem8 = new Uint8Array(e.target.result); // Load
                 }
                 catch(err)
                 {

@@ -1385,6 +1385,53 @@
             dump_file(new Uint8Array(mem8.buffer, mem8.byteOffset, mem8.length), "v86memory.bin");
             $("memory_dump").blur();
         };
+        
+        // Load memory file to mem8
+        $("memory_load").onclick = function()
+        {
+            $("load_memory_input").click();
+            $("memory_load").blur();
+        };
+        
+        $("load_memory_input").onchange = function()
+        {
+            var file = this.files[0];
+
+            if(!file)
+            {
+                return;
+            }
+
+            var was_running = emulator.is_running();
+
+            if(was_running)
+            {
+                emulator.stop();
+            }
+
+            var filereader = new FileReader();
+            filereader.onload = function(e)
+            {
+                try
+                {
+                    emulator.v86.cpu.mem8 = e.target.result; // Load
+                }
+                catch(err)
+                {
+                    alert("Something bad happened while restoring the memory:\n" + err + "\n\n" +
+                          "Note that the current configuration must be the same as the original");
+                    throw err;
+                }
+
+                if(was_running)
+                {
+                    emulator.run();
+                }
+            };
+            filereader.readAsArrayBuffer(file);
+
+            this.value = "";
+        };
 
         //$("memory_dump_dmp").onclick = function()
         //{

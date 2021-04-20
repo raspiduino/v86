@@ -1402,7 +1402,7 @@
                 return;
             }
 
-            emulator.v86.cpu.reset_cpu();
+            //emulator.v86.cpu.reset_cpu();
             var was_running = emulator.is_running();
 
             if(was_running)
